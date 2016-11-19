@@ -7,5 +7,7 @@ defmodule ApiTest.Router do
 
   scope "/api", ApiTest do
     pipe_through :api
+
+    resources "/events", EventController, except: [:new, :edit]
   end
 end
