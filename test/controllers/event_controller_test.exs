@@ -24,10 +24,9 @@ defmodule ApiTest.EventControllerTest do
       "duration" => event.duration}
   end
 
-  test "renders page not found when id is nonexistent", %{conn: conn} do
-    assert_error_sent 404, fn ->
-      get conn, event_path(conn, :show, -1)
-    end
+  test "renders event not found when id is nonexistent", %{conn: conn} do
+    conn = get conn, event_path(conn, :show, -1)
+    assert json_response(conn, 404)["error"] =~ "Event not found."
   end
 
   test "creates and renders resource when data is valid", %{conn: conn} do

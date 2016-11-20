@@ -54,7 +54,7 @@ defmodule ApiTest.Event do
         duration  = Timex.Comparable.diff( end_at, start_at, :seconds)
         changeset
           |> put_change(:duration, duration)
-      confirmation ->
+      duration ->
         changeset
     end
   end
