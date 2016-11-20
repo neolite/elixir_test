@@ -16,4 +16,8 @@ defmodule ApiTest.EventView do
       end_at: event.end_at,
       duration: event.duration}
   end
+
+  def render("error.json", _assigns) do
+    %{error: "Event not found."}
+  end
 end

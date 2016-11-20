@@ -25,8 +25,10 @@ defmodule ApiTest.EventController do
   end
 
   def show(conn, %{"id" => id}) do
-    event = Repo.get!(Event, id)
-    render(conn, "show.json", event: event)
+    case Repo.get(Event, id) do
+      nil -> conn |> put_status(404) |> render("error.json")
+      event -> render(conn, "show.json", event: event)
+    end
   end
 
   def update(conn, %{"id" => id, "event" => event_params}) do
